@@ -13,8 +13,8 @@ public class PostApiTest {
         // Defining the request body.
         String requestBody = """
                         {
-                            "name": "Rushabh Shah",
-                            "job": "QA Automation Engineer"
+                            "name": "Manuela Sousa",
+                            "job": "QA Lead"
                         }
                         """;
 
