@@ -1,6 +1,7 @@
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import org.testng.annotations.Test;
+import utils.ReadPropertiesFile;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -12,11 +13,11 @@ public class PostApiTest {
 
         // Defining the request body.
         String requestBody = """
-                        {
-                            "name": "Manuela Sousa",
-                            "job": "QA Lead"
-                        }
-                        """;
+                {
+                    "name": "Manuela Sousa",
+                    "job": "QA Lead"
+                }
+                """;
 
         //Converting request body to JSON.
         JsonPath expectedResponse = new JsonPath(requestBody);
@@ -24,7 +25,7 @@ public class PostApiTest {
         // Performing POST request and validating its response.
         given()
                 // Specifying the Base URI.
-                .baseUri("https://reqres.in/api")
+                .baseUri(ReadPropertiesFile.getPropertyValue("endpoint"))
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
