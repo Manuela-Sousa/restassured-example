@@ -19,6 +19,11 @@ public class ReadPropertiesFile {
     private ReadPropertiesFile() {
     }
 
+    /**
+     * Loads properties from the specified environment file.
+     *
+     * @param environment The environment (e.g., "dev", "prod", "test").
+     */
     private static void loadProperties(String environment) {
         String fileName = "/" + environment + ".properties";
 
@@ -35,10 +40,21 @@ public class ReadPropertiesFile {
         }
     }
 
+    /**
+     * Gets the value associated with the given key from the properties file.
+     *
+     * @param key The key for which the value is to be fetched.
+     * @return The value associated with the key, or null if the key doesn't exist.
+     */
     public static String getPropertyValue(String key) {
         return prop.getProperty(key);
     }
 
+    /**
+     * Sets the environment for the properties file. This allows for switching environments at runtime.
+     *
+     * @param environment The environment (e.g., "dev", "prod", "test").
+     */
     public static void setEnv(String environment) {
         env = environment;
         loadProperties(env);
