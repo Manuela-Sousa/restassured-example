@@ -20,7 +20,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      s
+
       - name: Cache Maven dependencies
         uses: actions/cache@v2
         with:
