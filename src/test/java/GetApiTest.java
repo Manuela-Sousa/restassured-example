@@ -5,9 +5,9 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
-public class getApiTest {
+public class GetApiTest {
     @Test
-    public static void GetApiTest() {
+    public static void getApiTest() {
 
         // Performing GET request and validating its response.
         given()
