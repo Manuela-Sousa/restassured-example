@@ -1,5 +1,4 @@
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import org.testng.annotations.Test;
 import utils.ReadPropertiesFile;
 
@@ -8,39 +7,42 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 public class PostApiTest {
+
+    private static final String BASE_URI = ReadPropertiesFile.getPropertyValue("endpoint");
+    private static final String USER_NAME = "Manuela Sousa";
+    private static final String USER_JOB = "QA Lead";
+    private static final String POST_URL = "/users";
+    private static final int EXPECTED_STATUS_CODE = 201;
+
     @Test
-    public static void postApiTest() {
+    public void postApiTest() {
 
-        // Defining the request body.
-        String requestBody = """
-                {
-                    "name": "Manuela Sousa",
-                    "job": "QA Lead"
-                }
-                """;
+        String requestBody = createRequestBody(USER_NAME, USER_JOB);
 
-        //Converting request body to JSON.
-        JsonPath expectedResponse = new JsonPath(requestBody);
-
-        // Performing POST request and validating its response.
         given()
-                // Specifying the Base URI.
-                .baseUri(ReadPropertiesFile.getPropertyValue("endpoint"))
+                .baseUri(BASE_URI)
                 .contentType(ContentType.JSON)
                 .body(requestBody)
                 .when()
-                //HTTP Request Method.
-                .post("/users")
+                .post(POST_URL)
                 .then()
-                //Ensuring that status code is 201 OK.
-                .statusCode(201)
-                //Validating Name value.
-                .body("name", equalTo(expectedResponse.getString("name")))
-                //Validating Job value.
-                .body("job", equalTo(expectedResponse.getString("job")))
-                // Ensuring that ID will be generated and returned in response is not null.
+
+                .statusCode(EXPECTED_STATUS_CODE)
+
+                .body("name", equalTo(USER_NAME))
+                .body("job", equalTo(USER_JOB))
+
                 .body("id", notNullValue())
-                // Log response details
+
                 .log().all();
+    }
+
+    private String createRequestBody(String name, String job) {
+        return String.format("""
+                {
+                    "name": "%s",
+                    "job": "%s"
+                }
+                """, name, job);
     }
 }
