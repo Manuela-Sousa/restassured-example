@@ -18,7 +18,6 @@ public class GetApiTest {
     @Test
     public void getApiTest() {
 
-        // Perform GET request and validate the response
         given()
                 .baseUri(BASE_URI)
                 .contentType(ContentType.JSON)
