@@ -1,6 +1,6 @@
 # Rest-Assured Test Automation Project
 
-This is a **test automation project** built with **Rest-Assured**, designed to help you quickly get started with API testing. It provides a ready-to-use framework that you can easily integrate into your own projects.
+This is a **test automation project** ready to use built with **Rest-Assured**, designed to help you quickly get started with API testing. It provides a ready-to-use framework that you can easily integrate into your own projects.
 
 ---
 
