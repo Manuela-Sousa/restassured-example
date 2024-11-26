@@ -14,6 +14,7 @@ public class GetApiTest {
     private static final String EXPECTED_FIRST_NAME = "Janet";
     private static final String EXPECTED_LAST_NAME = "Weaver";
     private static final String AVATAR_FIELD = "data.avatar";
+    private static final String GET_URL = "/users/";
 
     @Test
     public void getApiTest() {
@@ -22,7 +23,7 @@ public class GetApiTest {
                 .baseUri(BASE_URI)
                 .contentType(ContentType.JSON)
                 .when()
-                .get("/users/" + USER_ID)
+                .get(GET_URL + USER_ID)
                 .then()
 
                 .statusCode(EXPECTED_STATUS_CODE)
