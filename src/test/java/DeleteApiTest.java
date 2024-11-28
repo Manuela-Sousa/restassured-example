@@ -1,4 +1,3 @@
-import io.restassured.http.ContentType;
 import org.testng.annotations.Test;
 import utils.ReadPropertiesFile;
 
@@ -17,12 +16,12 @@ public class DeleteApiTest {
 
         given()
                 .baseUri(BASE_URI)
-                .contentType(ContentType.JSON)
                 .when()
                 .delete(GET_URL + USER_ID)
                 .then()
 
                 .statusCode(EXPECTED_STATUS_CODE)
+
                 .body(equalTo(""))
 
                 .log().all();
